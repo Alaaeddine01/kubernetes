@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector: # Il cherche les Pods qui ont ce label
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+# L’utilisateur ou une autre app envoie une requête à http://myapp-service:80
+
+# Kubernetes redirige ça à un Pod avec le label app: myapp
+
+# Et le conteneur reçoit la requête sur son port 8080
+
+

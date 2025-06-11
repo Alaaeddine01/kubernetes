@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:               # Sert à identifier le Deployment lui-même (optionnel mais utile)
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:        # Dit au Deployment : "gère tous les Pods qui ont ce label"
+      app: nginx
+  template:
+    metadata:
+      labels:           # Ce label est appliqué aux Pods créés
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.16
+          ports:
+            - containerPort: 8080  # ✅ Le serveur nginx écoute par défaut sur le port 80
